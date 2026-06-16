@@ -15,7 +15,7 @@ This is an app that allows/generates static permanent(stays on reboot and apps r
 
 ### This is writen for my personal use but anyone can use it if you want to i guess
 
-I made this so that I can arrange the connections as I please and to fix certain programs bugged ahh inicial connections, think of this as a work around.
+I made this so that I can arrange the connections as I please and to fix certain programs bugged ahh iniｔial connections, think of this as a work around.
 
 ## Building
 
