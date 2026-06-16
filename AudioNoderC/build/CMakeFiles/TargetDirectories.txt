@@ -1,0 +1,5 @@
+/home/yay/Documents/Code/c/AudioNoderC/build/CMakeFiles/AudioNoderC.dir
+/home/yay/Documents/Code/c/AudioNoderC/build/CMakeFiles/edit_cache.dir
+/home/yay/Documents/Code/c/AudioNoderC/build/CMakeFiles/rebuild_cache.dir
+/home/yay/Documents/Code/c/AudioNoderC/build/CMakeFiles/AudioNoderC_autogen_timestamp_deps.dir
+/home/yay/Documents/Code/c/AudioNoderC/build/CMakeFiles/AudioNoderC_autogen.dir
