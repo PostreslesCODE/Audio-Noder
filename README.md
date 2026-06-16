@@ -24,4 +24,4 @@ cmake ..
 make
 ```
 
-Then in the build folder you will find the actual executable AudioNoderC
+Then in the /Audio-Noder/AudioNoderC/build/ folder you will find the actual executable AudioNoderC
