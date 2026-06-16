@@ -1,0 +1,7 @@
+# VS Code config
+.vscode/
+
+# Build output
+build/
+*.o
+*.out
