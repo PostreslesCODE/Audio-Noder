@@ -16,21 +16,11 @@ To build this masterpiece:
 
 in your megaterminal choose where you want to store this awsome program, then type:
 
-``
+```
 git clone https://github.com/PostreslesCODE/Audio-Noder.git
-``
-``
 cd Audio-Noder/AudioNoderC
-``
-``
 mkdir build && cd build
-``
-``
 cmake ..
-``
-``
 make
-``
-``
-./AudioNoder.out
-``
+./a.out
+```
