@@ -22,5 +22,6 @@ cd Audio-Noder/AudioNoderC
 mkdir build && cd build
 cmake ..
 make
-./a.out
 ```
+
+Then in the build folder you will find the actual executable AudioNoderC
