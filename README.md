@@ -18,9 +18,9 @@ in your megaterminal choose where you want to store this awsome program, then ty
 
 `
 git clone https://github.com/PostreslesCODE/Audio-Noder.git
-cd Audio-Noder
+cd Audio-Noder/AudioNoderC
 mkdir build && cd build
 cmake ..
 make
-./AudioNoderC
+./AudioNoder.out
 `
