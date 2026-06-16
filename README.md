@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="AudioNoderC/icons/logo.png" alt="Audio-Noder logo" width="200"/>
+</p>
+
 # Audio-Noder
 Audio Noder written in C and C++
 
