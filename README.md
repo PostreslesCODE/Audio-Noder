@@ -12,3 +12,13 @@ This is an app that allows/generates static permanent(stays on reboot and apps r
 
 I made this so that I can arrange the connections as I please and to fix certain programs bugged ahh inicial connections, think of this as a work around.
 
+To build this masterpiece:
+
+in your megaterminal choose where you want to store this awsome program, then type:
+
+git clone https://github.com/PostreslesCODE/Audio-Noder.git
+cd Audio-Noder
+mkdir build && cd build
+cmake ..
+make
+./AudioNoderC
