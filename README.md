@@ -14,7 +14,7 @@ I made this so that I can arrange the connections as I please and to fix certain
 
 To build this masterpiece:
 
-in your megaterminal choose where you want to store this awsome program, then type:
+in your megaterminal choose where you want to store this awesome program, then type:
 
 ```
 git clone https://github.com/PostreslesCODE/Audio-Noder.git
