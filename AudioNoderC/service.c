@@ -7,6 +7,7 @@
 #include <unistd.h>
 #include <stddef.h>
 #include <string.h>
+#include "ConfigLinker.h"
 
 // Pipewire
 #include <pipewire/pipewire.h>
@@ -18,18 +19,6 @@
 
 static struct pw_main_loop* globalLoop = NULL;
 
-static struct PortPair my_pairs[] = {
-
-    { "gx_head_fx", "out_0", "noder_mixer", "mic_in_0" },
-    { "gx_head_fx", "out_1", "noder_mixer", "mic_in_0" },
-    { "easyeffects_source", "capture_FL", "noder_mixer", "mic_in_2" },
-    { "easyeffects_source", "capture_FR", "noder_mixer", "mic_in_2" },
-    { "pwsp-virtual-mic", "capture_FL", "noder_mixer", "mic_in_1" },
-    { "pwsp-virtual-mic", "capture_FR", "noder_mixer", "mic_in_1" },
-    { "noder_mixer",        "mixed_out",  "noder_mic",   "input_MONO" },
-
-};
-
 
 void* serviceThread(void* arg){
 
@@ -40,6 +29,17 @@ void* serviceThread(void* arg){
 
 
 void serviceStart(){
+
+    PortPair my_pairs[MAX_LINKS];
+    int pair_count = 0;
+
+    config_load("config.json",my_pairs,&pair_count);
+
+    fprintf(stderr, "[DBG] pair_count = %d\n", pair_count);
+    for(int i = 0; i < pair_count; i++)
+    fprintf(stderr, "[DBG] pair %d: %s:%s -> %s:%s\n", i,
+        my_pairs[i].out_node, my_pairs[i].out_port,
+        my_pairs[i].in_node,  my_pairs[i].in_port);
 
     struct pw_main_loop *loop    = NULL;
     struct pw_filter    *filter  = NULL;
@@ -82,7 +82,7 @@ void serviceStart(){
     }
 
     struct FinderLinker fl;
-    FinderLinker_init(&fl,core,my_pairs,ARRAY_SIZE(my_pairs));
+    FinderLinker_init(&fl,core,my_pairs,pair_count);
 
     mic_proxy = virtual_mic_create(core,&mic_error_listener);
 

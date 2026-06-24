@@ -28,6 +28,8 @@ add_executable(AudioNoderC
     MainWindow.h
     FinderLinker.c
     FinderLinker.h
+    ConfigLinker.c
+    ConfigLinker.h
     resources.qrc
 )
 

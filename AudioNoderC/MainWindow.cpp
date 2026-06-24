@@ -13,11 +13,19 @@
     #include <QWidget>
     #include <QSystemTrayIcon>
     #include <QMenu>
+    #include <QFile>
+    #include <QMessageBox>
+    #include <QTimer>
 
         MainWindow::MainWindow(QWidget *parent) : QWidget(parent){ // Constructor for Main Window
             setupUI();
             setupTray();
             setupConnections();
+            if(!QFile::exists("config.json")) {
+                QMessageBox::critical(this, "Error", "config.json not found");
+                QTimer::singleShot(0, qApp, &QApplication::quit);
+                return;
+            }
             serviceRunning = true;
             pthread_create(&thread1,NULL,serviceThread,NULL);
         };
@@ -87,6 +95,11 @@
                 startButton,
                 &QPushButton::clicked,
                 [this](){
+                    if (!QFile::exists("config.json")) {
+                        QMessageBox::critical(this, "Error", "config.json not found");
+                        return;
+                    }
+
                     startButton -> setEnabled(false);
                     stopButton -> setEnabled(true);
                     serviceRunning = true;

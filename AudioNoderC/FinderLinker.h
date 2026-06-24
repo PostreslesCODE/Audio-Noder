@@ -10,10 +10,10 @@
 
 struct PortPair{
 
-    const char *out_node;
-    const char *out_port;
-    const char *in_node;
-    const char *in_port;
+    char out_node[64];
+    char out_port[64];
+    char in_node[64];
+    char in_port[64];
     uint32_t    out_port_id;
     uint32_t    out_node_id;   
     uint32_t    in_port_id;
@@ -43,6 +43,9 @@ struct FinderLinker{
 
 };
 
+typedef struct PortPair     PortPair;
+typedef struct NodeInfo     NodeInfo;
+typedef struct FinderLinker FinderLinker;
 
 void FinderLinker_init(struct FinderLinker *fl, struct pw_core *core, struct PortPair *pairs, int pair_count);
 void FinderLinker_destroy(struct FinderLinker *lf);
