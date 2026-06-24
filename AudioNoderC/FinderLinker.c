@@ -4,9 +4,6 @@
 
 
 
-
-
-
 static void createLinkPorts(struct FinderLinker *fl, uint32_t outPort, uint32_t inPort, uint32_t outNode,uint16_t inNode){
 
     char s_on[16], s_op[16], s_in[16], s_ip[16];
@@ -57,8 +54,7 @@ static void onGlobal(void *data, uint32_t id, uint32_t permissions,
             if(fl->nodes[i].id == node_id){ node_name = fl->nodes[i].name; break; }
         if(!node_name){return;}
 
-        fprintf(stderr, "[FL] port id=%u node='%s' dir=%s name='%s'\n",
-                id, node_name, direction, port_name);
+        //fprintf(stderr, "[FL] port id=%u node='%s' dir=%s name='%s'\n", id, node_name, direction, port_name);
 
         for(int i = 0; i < fl->pair_count; i++){
             struct PortPair *p = &fl->pairs[i];
@@ -91,8 +87,7 @@ static void onGlobal(void *data, uint32_t id, uint32_t permissions,
     const char *media_class = spa_dict_lookup(props, PW_KEY_MEDIA_CLASS);
     if(!node_name){return;}
 
-    fprintf(stderr, "[FL] node id=%u name='%s' class='%s'\n",
-            id, node_name, media_class ? media_class : "(null)");
+    //fprintf(stderr, "[FL] node id=%u name='%s' class='%s'\n",id, node_name, media_class ? media_class : "(null)");
 
     if(fl->node_count >= MAX_NODES){return;}
     fl->nodes[fl->node_count].id = id;
@@ -103,8 +98,29 @@ static void onGlobal(void *data, uint32_t id, uint32_t permissions,
 static void onGlobalRemove(void *data, uint32_t id){
 
     struct FinderLinker *fl = data;
-    //printf("\nNode removed mic id = %u\n", id);
-    //unfinnished
+
+    // Remove from node cache
+    for(int i = 0; i < fl->node_count; i++){
+        if(fl->nodes[i].id == id){
+            // Shift remaining nodes down
+            fl->nodes[i] = fl->nodes[fl->node_count - 1];
+            fl->node_count--;
+            break;
+        }
+    }
+
+    // Reset any pair whose ports depended on this id
+    for(int i = 0; i < fl->pair_count; i++){
+        struct PortPair *p = &fl->pairs[i];
+        if(p->out_port_id == id || p->in_port_id == id ||
+           p->out_node_id == id || p->in_node_id == id){
+            p->linked      = false;
+            p->out_port_id = 0;
+            p->in_port_id  = 0;
+            p->out_node_id = 0;
+            p->in_node_id  = 0;
+        }
+    }
 }
 
 
@@ -117,10 +133,26 @@ static const struct pw_registry_events registry_events = {
 
 void FinderLinker_init(struct FinderLinker *fl, struct pw_core *core, struct PortPair *pairs, int pair_count){
 
+    if(fl->registry){
+        pw_proxy_destroy((struct pw_proxy *)fl->registry);
+        fl->registry = NULL;
+    }
+
     memset(fl,0,sizeof(*fl));
     fl->core = core;
     fl->pairs = pairs;
     fl->pair_count = pair_count;
+
+    for(int i = 0; i < fl->pair_count; i++){
+        fl->pairs[i].linked = false;
+        fl->pairs[i].out_port_id = 0;
+        fl->pairs[i].in_port_id  = 0;
+        fl->pairs[i].out_node_id = 0;
+        fl->pairs[i].in_node_id  = 0;
+    }
+    fprintf(stderr, "[FL] Pairs Reset\n");
+
+
 
     fprintf(stderr, "[FL] loaded %d pairs\n", fl->pair_count);
     for(int i = 0; i < fl->pair_count; i++)
