@@ -32,3 +32,20 @@ make
 ```
 
 Then in the /Audio-Noder/AudioNoderC/build/ folder you will find the actual executable AudioNoderC
+
+## Usage
+
+Place your now built executable in some folder where it is alone with a conifg.json file that will contain your connections, start the executable and you should have the connections set up like you specified in the config.json
+
+## Config
+The config has this structure and it has to be followed correctly unless you want a non functioning program: 
+```
+{
+  "pairs": [
+    { "out_node": "OriginNodeName1",         "out_port": "OriginPortName1",       "in_node": "DestinationNodeName1", "in_port": "DestinationPortName2" },
+    { "out_node": "OriginNodeName2",         "out_port": "OriginPortName2",       "in_node": "DestinationNodeName1", "in_port": "DestinationPortName2" }
+  ]
+}
+
+
+```
