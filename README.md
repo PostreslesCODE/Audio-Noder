@@ -13,6 +13,8 @@ Audio Noder written in C and C++
 
 This is an app that allows/generates static permanent(stays on reboot and apps reapearing) audio node links.
 
+Also has a mixer and virtual mics that you can route to if you need them.
+
 ### This is writen for my personal use but anyone can use it if you want to i guess
 
 I made this so that I can arrange the connections as I please and to fix certain programs bugged ahh iniｔial connections, think of this as a work around.
