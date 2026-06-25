@@ -45,10 +45,11 @@ void serviceStart(){
     struct pw_filter    *filter  = NULL;
     struct pw_context   *context = NULL;
     struct pw_core      *core    = NULL;
-    struct pw_proxy     *mic_proxy = NULL;
-    struct spa_hook mic_error_listener = {0};
+    struct pw_proxy     *mic_proxy1 = NULL;
+    struct pw_proxy     *mic_proxy2 = NULL;
+    struct spa_hook mic_error_listener1 = {0};
+    struct spa_hook mic_error_listener2 = {0};
     struct mixer_data mixer = {0};
-    //struct link_finder lf = {0};
     int loopReturn = -1;
 
     printf("\nService starting\n");
@@ -84,9 +85,15 @@ void serviceStart(){
     struct FinderLinker fl;
     FinderLinker_init(&fl,core,my_pairs,pair_count);
 
-    mic_proxy = virtual_mic_create(core,&mic_error_listener);
+    mic_proxy1 = virtual_mic_create(core,&mic_error_listener1);
+    mic_proxy2 = virtual_mic_create(core,&mic_error_listener2);
 
-    if(!mic_proxy){
+    if(!mic_proxy1){
+        printf("\nFail in mic creation\n");
+        goto cleanup;
+    }
+
+    if(!mic_proxy2){
         printf("\nFail in mic creation\n");
         goto cleanup;
     }
@@ -99,13 +106,14 @@ void serviceStart(){
 
     cleanup:
     // Destroying the node and sink
-    if(mic_proxy) {pw_proxy_destroy(mic_proxy);}
+    if(mic_proxy1) {pw_proxy_destroy(mic_proxy1);}
+    if(mic_proxy2) {pw_proxy_destroy(mic_proxy2);}
     FinderLinker_destroy(&fl);
     if(core) {pw_core_disconnect(core);}
     if(context) {pw_context_destroy(context);}
     if(filter) {pw_filter_destroy(filter);}
     if(loop) {pw_main_loop_destroy(loop);}
-
+    micID = 0;
     globalLoop = NULL;
     pw_deinit();
 

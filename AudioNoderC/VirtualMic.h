@@ -3,6 +3,7 @@
 
 #include <pipewire/pipewire.h>
 
+extern int micID;
 struct pw_proxy *virtual_mic_create(struct pw_core *core, struct spa_hook *error_listener);
 
 #endif
