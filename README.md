@@ -37,6 +37,11 @@ Then in the /Audio-Noder/AudioNoderC/build/ folder you will find the actual exec
 
 Place your now built executable in some folder where it is alone with a conifg.json file that will contain your connections, start the executable and you should have the connections set up like you specified in the config.json
 
+Example:
+<img width="911" height="695" alt="image" src="https://github.com/user-attachments/assets/77ad4860-ce60-4291-afd6-5897bb3cf218" />
+
+
+
 ## Config
 The config has this structure and it has to be followed correctly unless you want a non functioning program: 
 ```
