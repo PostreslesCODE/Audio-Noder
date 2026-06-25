@@ -11,7 +11,7 @@ Audio Noder written in C and C++
 
 # Description
 
-This is an app that allows/generates static permanent(stays on reboot and apps reapearing) audio node links.
+This is an app that allows/generates static permanent (while the app is running) audio node links that stay on reboot and apps reapearing.
 
 Also has a mixer and virtual mics that you can route to if you need them.
 
