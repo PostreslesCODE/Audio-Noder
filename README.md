@@ -42,6 +42,11 @@ Example:
 
 <img width="1155" height="519" alt="image" src="https://github.com/user-attachments/assets/7035ddd2-3338-436c-aa45-d063dee2ecaa" />
 
+This translates to: 
+
+
+<img width="932" height="528" alt="image" src="https://github.com/user-attachments/assets/dcaae2b2-0091-41b2-af46-550c825b44e6" />
+
 
 
 
