@@ -40,7 +40,8 @@ Place your now built executable in some folder where it is alone with a conifg.j
 Example:
 
 
-<img width="911" height="695" alt="image" src="https://github.com/user-attachments/assets/77ad4860-ce60-4291-afd6-5897bb3cf218" />
+<img width="1155" height="519" alt="image" src="https://github.com/user-attachments/assets/7035ddd2-3338-436c-aa45-d063dee2ecaa" />
+
 
 
 
