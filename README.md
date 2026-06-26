@@ -37,7 +37,7 @@ Then in the /Audio-Noder/AudioNoderC/build/ folder you will find the actual exec
 
 ## Usage
 
-Place your now built executable in some folder where it is alone with a conifg.json file that will contain your connections, start the executable and you should have the connections set up like you specified in the config.json
+Place your now built executable in some folder where it is alone with a configg.json file that will contain your connections, start the executable and you should have the connections set up like you specified in the config.json
 
 Example:
 
